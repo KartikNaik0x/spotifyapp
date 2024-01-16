@@ -1,0 +1,22 @@
+<nav class="bg-black p-4 mt-0 fixed  text-white w-full ">
+    <div class="pd-20 container  flex justify-between items-center">
+      <a routerLink="/">
+        <!-- Use the correct path or URL to the Spotify logo image -->
+        <img src=".\assets\Spotify_Logo_CMYK_Green.png" alt="Spotify Logo" class="h-8">
+      </a>
+     
+      
+      <div  *ngIf="!isLoggedIn(); else loggedInLinks">
+        <a  *ngIf="currentRoute !== '/registration'" routerLink="/registration" class="mr-4">Register</a>
+        <a    *ngIf="currentRoute !== '/login'" routerLink="/login" class="mr-4">Login</a>
+        <!-- Add other navigation links as needed -->
+      </div>
+      <ng-template #loggedInLinks>
+        <div class="flex items-center">
+        <span class="mr-4 text-white" >Welcome ,{{ getUsername() }}</span>
+        <a (click)="onLogoutClick()" class="hover:underline cursor-pointer">Logout</a>
+      </div>
+      </ng-template>
+      
+    </div>
+  </nav>

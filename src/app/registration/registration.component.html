@@ -1,0 +1,106 @@
+<div class="flex justify-center items-center bg-stone-950 text-white">
+  <form class="bg-black text-black shadow-md rounded px-8 pt-6 pb-8 m-4 w-96 " [formGroup]="registerForm"
+    (ngSubmit)="registerForm.status !== 'INVALID' && registerFn()">
+    <h2 class="text-2xl font-bold mb-4 mt-10 text-white">Sign up to start listening</h2>
+    <div class="mb-2">
+      <label class="block text-white text-sm font-bold mb-1" for="firstName">
+        User Name
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline bg-white-800"
+        id="username" type="text" formControlName="username" placeholder="Username"
+        [ngClass]="{error:getControl('username')?.errors && getControl('username')?.touched}" />
+      <div *ngIf="getControl('username')?.errors && getControl('username')?.touched">
+        <small class="text-red-50" *ngIf="getControl('username')?.errors?.['required']">Username is required</small>
+        <small class="text-red-50" *ngIf="getControl('username')?.errors?.['maxlength']">Maximum 20 characters</small>
+      </div>
+
+    </div>
+    <div class="mb-2">
+      <label class="block text-white text-sm font-bold mb-1" for="firstName">
+        First Name
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline bg-white-800"
+        id="firstname" type="text" formControlName="firstname" placeholder="First Name"
+        [ngClass]=" {error : getControl('firstname')?.errors && getControl('firstname')?.touched}" />
+      <div *ngIf="getControl('firstname')?.errors && getControl('firstname')?.touched">
+        <small class="text-red-50" *ngIf="getControl('firstname')?.errors?.['required']">firstname is required</small>
+        <small class="text-red-50" *ngIf="getControl('firstname')?.errors?.['maxlength']">Maximum 32 characters</small>
+      </div>
+
+    </div>
+    <div class="mb-2">
+      <label class="block text-white text-sm font-bold mb-1" for="lastname">
+        Last Name
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline bg-white-800"
+        id="lastname" type="text" formControlName="lastname" placeholder="Last Name"
+        [ngClass]="{error:getControl('lastname')?.errors && getControl('lastname')?.touched}" />
+      <div *ngIf="getControl('lastname')?.errors && getControl('lastname')?.touched">
+        <small class="text-red-50" *ngIf="getControl('lastname')?.errors?.['required']">lastname is required</small>
+        <small class="text-red-50" *ngIf="getControl('lastname')?.errors?.['maxlength']">Maximum 20 characters</small>
+      </div>
+
+    </div>
+    <div class="mb-2">
+      <label class="block text-white text-sm font-bold mb-1" for="email">
+        Email
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline bg-white-800"
+        id="email" type="email" formControlName="email" placeholder="Email"
+        [ngClass]="{error:getControl('email')?.errors && getControl('email')?.touched}" />
+      <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+        <small class="text-red-50" *ngIf="getControl('email')?.errors?.['required']">email is required</small>
+        <small class="text-red-50" *ngIf="getControl('email')?.errors?.['maxlength']">Maximum 20 characters</small>
+        <small class="text-red-50" *ngIf="getControl('email')?.errors?.['pattern']">enter valid email</small>
+      </div>
+
+    </div>
+    <div class="mb-2">
+      <label class="block text-white text-sm font-bold mb-1" for="password">
+        Password
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-whites-800"
+        id="password" type="password" formControlName="password" placeholder="Password"
+        [ngClass]="{error:getControl('password')?.errors && getControl('password')?.touched}" />
+        <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+          <small class="text-red-50" *ngIf="getControl('password')?.errors?.['required']">Password is required</small>
+         
+        </div>
+
+    </div>
+    <div class="mb-2">
+      <label class="block text-white text-sm font-bold mb-1" for="mobileNumber">
+        Mobile Number
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline bg-white-800"
+        id="mobileNumber" 
+        type="text" 
+        formControlName="mobileNumber" 
+        placeholder="Mobile Number"
+        [ngClass]="{error:getControl('mobileNumber')?.errors && getControl('mobileNumber')?.touched}" />
+      <div *ngIf="getControl('mobileNumber')?.errors && getControl('mobileNumber')?.touched">
+        <small class="text-red-50" *ngIf="getControl('mobileNumber')?.errors?.['required']">Mobile Number is required</small>
+        <small class="text-red-50" *ngIf="getControl('mobileNumber')?.errors?.['maxlength']">length is maximum 10</small>
+        <small class="text-red-50" *ngIf="getControl('mobileNumber')?.errors?.['minlength']">length is minimum 10</small>
+
+      </div>
+      <div *ngIf="showMessage" [ngClass]="messageType + '-message-container'">
+        {{ messageText }}
+      </div>
+
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-green-500  rounded-full text-black-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit" [disabled]="registerForm.status === 'INVALID' ">
+        Sign Up
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,67 @@
+<!-- <div class="flex justify-center items-center h-screen bg-stone-950">
+    <div class=" text-white bg-black p-8 rounded shadow-md w-96">
+      <h2 class="text-2xl font-bold mb-4">Login To Spotify</h2>
+      <form class="bg-black">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-semibold mb-2">Username</label>
+          <input type="text" id="username" class="w-full px-3 py-2 rounded bg-white-800 text-black focus:outline-none" />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-semibold mb-2">Password</label>
+          <input type="password" id="password" class="w-full px-3 py-2 rounded bg-white-800 text-black focus:outline-none" />
+        </div>
+        <button type="submit" class="w-full bg-green-500 text-gray-900 py-2 px-4 rounded hover:bg-yellow-600 focus:outline-none">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  
+   -->
+
+   <div class="flex justify-center items-center h-screen bg-stone-950">
+    <div class="text-white bg-black p-8 rounded shadow-md w-96">
+      <h2 class="text-2xl font-bold mb-4">Login To Spotify</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="loginForm.status !== 'INVALID' && loginFn()">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-semibold mb-2">Username</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            class="w-full px-3 py-2 rounded bg-white-800 text-black focus:outline-none"
+            [ngClass]="{error:getControl('username')?.errors && getControl('username')?.touched}"
+          />
+          <div *ngIf="getControl('username')?.errors && getControl('username')?.touched">
+            <small class="text-red-50" *ngIf="getControl('username')?.errors?.['required']">Username is required</small>
+            <!-- Add more error messages as needed -->
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-semibold mb-2">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="w-full px-3 py-2 rounded bg-white-800 text-black focus:outline-none"
+            [ngClass]="{error:getControl('password')?.errors && getControl('password')?.touched}"
+          />
+          <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+            <small class="text-red-50" *ngIf="getControl('password')?.errors?.['required']">Password is required</small>
+            <!-- Add more error messages as needed -->
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-gray-900 py-2 px-4 rounded hover:bg-yellow-600 focus:outline-none"
+          [disabled]="loginForm.status === 'INVALID'"
+        >
+          Login
+        </button>
+        <div *ngIf="showMessage" [ngClass]="messageType + '-message-container'">
+          {{ messageText }}
+        </div>
+      </form>
+    </div>
+  </div>

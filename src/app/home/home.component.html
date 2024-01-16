@@ -1,0 +1,67 @@
+<div class="bg-black pt-16 flex h-screen bg-gray-100">
+    <!-- Playlist Button -->
+    <div class="w-1/5 md:w-1/5 bg-gray-800 text-white p-4 fixed h-full">
+      <button routerLink="/playlist" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Playlist
+      </button>
+    </div>
+    <!-- Search Bar -->
+    <div class="bg-black md:w-4/5 p-4 ml-auto overflow-y-auto">
+      <div class="flex items-center fixed">
+        <input
+          type="text"
+          class="w-3/4 md:w-2/3 sm:w-2/3 border border-gray-300 p-2 rounded mb-2 md:mb-0"
+          placeholder="Search for music..."
+          [(ngModel)]="searchQuery"
+        />
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded md:ml-2" (click)="search()">
+          Search
+        </button>
+      </div>
+      <br>
+      <br>
+      <!-- Display Music Cards -->
+     
+      <div class="flex flex-wrap mt-4">
+        <div *ngFor="let result of tracks" class="w-1/4 md:w-1/3 sm:w-1/2 lg:w-1/4 p-4">
+          <div class="bg-black border rounded p-4">
+            <img [src]="result.album.images[0].url" alt="Album Cover" class="w-full h-32 object-cover mb-4" />
+            <p class="text-white font-bold">{{ result.album.name }}</p>
+            <p class="text-white">{{ result.album.artists[0].name }}</p>
+            <audio  class="w-full" [id]="'audio' + result.id">
+              <source [src]="result.preview_url" type="audio/mp3">
+            </audio>
+            <div class="flex items-center mt-2">
+              <div class="w-full bg-gray-300 h-2 rounded overflow-hidden">
+                <div class="bg-green-500 h-full" [style.width.%]="calculateProgressBarWidth(result.id)"></div>
+              </div>
+             <br>
+            </div>
+            <!-- <p class="text-white">{{ result.duration_ms }}</p> -->
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="playAudio(result)">
+                {{ result.id === currentlyPlayingId && !isAudioPaused(result.id) ? '⏸️' : '▶️' }}
+            </button>
+            <!-- Add a play button or any other functionality you want -->
+            <button
+            class="heart-button"
+            [ngClass]="{ 'hearted': result.hearted }"
+            (click)="toggleHeart(result)"
+          >
+            &#x2665;
+          </button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

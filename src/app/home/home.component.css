@@ -1,0 +1,12 @@
+.heart-button {
+    padding-left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    background-color: transparent; /* Set background color to transparent */
+    border: none; /* Remove border */
+    color: white; /* Set default color to white or any color that suits your design */
+  }
+  .heart-button.hearted {
+    color: red; /* Change to the color you want when hearted */
+  }

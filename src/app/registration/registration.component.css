@@ -1,0 +1,26 @@
+.error{
+    border: 2px solid red;
+}
+button[disabled] {
+    background-color: #CCCCCC; /* Light gray background for disabled state */
+    color: #666666; /* Darker text color for better readability */
+    cursor: not-allowed; /* Change cursor to not-allowed */
+  }
+  /* Add some styles for the hover effect on the disabled button */
+  button[disabled]:hover {
+    background-color: #CCCCCC; /* Keep the background color on hover */
+    color: #666666;
+  }
+
+  .success-message-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #4CAF50;
+    color: white;
+  }
+  .error-message-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #F44336;
+    color: white;
+  }
